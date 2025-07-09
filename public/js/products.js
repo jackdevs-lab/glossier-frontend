@@ -1,4 +1,4 @@
-const API_BASE_URL = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://glossier-website.vercel.app';
+const API_BASE_URL = "https://glossier-backend.onrender.com";
 
 async function getProductsByCategory(category) {
     try {
