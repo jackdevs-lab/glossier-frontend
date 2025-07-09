@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://glossier-backend.onrender.com";
+const API_BASE_URL ="https://glossier-backend.onrender.com";
 
 async function getProductsByCategory(category) {
     try {
