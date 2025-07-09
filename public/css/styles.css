@@ -1,0 +1,156 @@
+/* Custom styles to complement Tailwind */
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Smooth transitions */
+.transition {
+    transition: all 0.3s ease;
+}
+
+/* Product card hover effect */
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Mobile-first base styles */
+#menu {
+    display: none; /* Hidden by default, toggled by JavaScript */
+}
+
+#menu-toggle {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+}
+
+#menu.active {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.product-card img {
+    object-fit: cover; /* Ensure image fits well within container */
+}
+
+/* Media query for tablet and up (md breakpoint, ~768px) */
+@media (min-width: 768px) {
+    #menu {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #menu-toggle {
+        display: none; /* Hide toggle on desktop */
+    }
+
+    .hero-section img {
+        max-width: 28rem; /* Larger image on desktop */
+    }
+}
+
+/* Media query for desktop and up (lg breakpoint, ~1024px) */
+@media (min-width: 1024px) {
+    .hero-section img {
+        max-width: 32rem; /* Even larger on large screens */
+    }
+}
+
+/* Ensure product card images scale properly */
+.product-card img {
+    width: 100%;
+    height: auto; /* Allows the image to maintain its aspect ratio */
+    max-height: 192px; /* Matches max-h-48 in Tailwind */
+    object-fit: contain; /* Ensures the full image is visible */
+    display: block; /* Removes any inline spacing issues */
+}
+
+/* Ensure the card adjusts to the image height */
+.product-card {
+    min-height: 0; /* Prevents unwanted stretching */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Optional: Center the image vertically if needed */
+.product-card .mb-4 {
+    margin-bottom: 1rem;
+    flex-grow: 0;
+}
+
+/* Responsive adjustments for product cards */
+@media (max-width: 767px) {
+    .product-card img {
+        max-height: 150px; /* Slightly smaller max height on mobile for better fit */
+    }
+}
+
+/* Modal styles for cart and navigation */
+#cart-modal, #nav-modal {
+    transition: opacity 0.3s ease-in-out;
+}
+
+#cart-modal.hidden, #nav-modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+}
+
+#cart-modal:not(.hidden), #nav-modal:not(.hidden) {
+    opacity: 1;
+    pointer-events: auto;
+    display: block;
+}
+
+#cart-modal .transform, #nav-modal .transform {
+    transition: transform 0.3s ease-in-out;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#cart-modal:not(.hidden) .transform {
+    transform: translateX(0);
+}
+
+#cart-modal.hidden .transform {
+    transform: translateX(100%);
+}
+
+#nav-modal:not(.hidden) .transform {
+    transform: translateX(0);
+}
+
+#nav-modal.hidden .transform {
+    transform: translateX(-100%);
+}
+
+@media (max-width: 767px) {
+    #cart-modal .transform, #nav-modal .transform {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    #cart-modal .transform, #nav-modal .transform {
+        width: 33.333333%;
+    }
+}
+
+#nav-items a {
+    font-size: 1.125rem;
+    transition: color 0.2s ease;
+}
+
+#nav-items a:hover {
+    color: #8B5E3C;
+}
+
+/* Ensure z-index hierarchy */
+#cart-modal {
+    z-index: 50;
+}
+
+#nav-modal {
+    z-index: 60;
+}

@@ -1,0 +1,12 @@
+{
+  "name": "glossier-frontend",
+  "version": "1.0.0",
+  "description": "Glossier-inspired cosmetics e-commerce frontend",
+  "scripts": {
+    "build-css": "tailwindcss -i ./src/input.css -o ./public/css/output.css",
+    "watch-css": "tailwindcss -i ./src/input.css -o ./public/css/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
