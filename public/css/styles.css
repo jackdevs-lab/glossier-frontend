@@ -89,11 +89,38 @@ body {
 
 .cart-item {
     display: flex;
-    flex-wrap: wrap; /* allow wrapping on smaller screens */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
     align-items: flex-start;
     justify-content: space-between;
     gap: 1rem;
+    padding: 0 1rem; /* Ensure consistent padding */
 }
+.cart-item .flex.items-center {
+    gap: 1rem; /* Increase gap between quantity buttons and remove button */
+}
+.quantity-btn {
+    min-width: 24px; /* Ensure consistent button size */
+    min-height: 24px;
+    font-size: 1rem; /* Adjust icon size inside buttons */
+}
+.remove-btn {
+    margin-left: 1rem; /* Increase spacing from quantity buttons */
+    line-height: 1; /* Align the "×" vertically */
+}
+@media (max-width: 768px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .cart-item .flex.items-center {
+        justify-content: flex-end;
+        margin-top: 0.5rem;
+    }
+    .cart-item h3 {
+        max-width: 12rem; /* Prevent title from breaking layout */
+    }
+}
+
 @media (max-width: 768px) {
     .cart-item h3 {
         max-width: 12rem; /* prevent title from breaking layout */
