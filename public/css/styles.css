@@ -85,21 +85,6 @@ body {
         max-height: 150px; /* Slightly smaller max height on mobile for better fit */
     }
 }
-@media (min-width: 768px) {
-    #cart-modal .transform {
-        width: 33.333333%;
-        padding: 1.5rem; /* Restore padding for larger screens */
-    }
-
-    #cart-items, .flex.justify-between {
-        flex-direction: row;
-        gap: 1rem;
-    }
-
-    .product-card img {
-        max-height: 192px; /* Restore original height for desktop */
-    }
-}
 
 /* Modal styles for cart and navigation */
 #cart-modal, #nav-modal {
@@ -110,10 +95,6 @@ body {
     opacity: 0;
     pointer-events: none;
     display: none;
-}
-#cart-items, .flex.justify-between {
-    flex-direction: column;
-    gap: 0.5rem; /* Add space between stacked items */
 }
 
 #cart-modal:not(.hidden), #nav-modal:not(.hidden) {
@@ -126,9 +107,6 @@ body {
     transition: transform 0.3s ease-in-out;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    padding: 1rem; /* Reduced padding for mobile */
-
 }
 
 #cart-modal:not(.hidden) .transform {
