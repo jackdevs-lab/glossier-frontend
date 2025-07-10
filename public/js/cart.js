@@ -65,7 +65,7 @@ class Cart {
         }
     }
     
- renderCart() {
+renderCart() {
     const cartItemsElement = document.getElementById('cart-items');
     const cartTotalElement = document.getElementById('cart-total');
 
@@ -78,19 +78,19 @@ class Cart {
     }
 
     cartItemsElement.innerHTML = this.items.map(item => `
-        <div class="flex justify-between items-center mb-4 pb-4 border-b border-[#5C4033] border-opacity-20">
-            <div class="flex items-center max-w-xs">
-                <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain mr-4">
-                <div class="text-[#5C4033]">
-                    <h3 class="font-medium text-sm truncate">${item.name}</h3>
+        <div class="cart-item border-b border-[#5C4033] border-opacity-20 pb-4 mb-4 flex flex-wrap md:flex-nowrap justify-between items-start gap-4">
+            <div class="flex items-center gap-4 flex-1 min-w-0">
+                <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain rounded flex-shrink-0">
+                <div class="text-[#5C4033] min-w-0">
+                    <h3 class="font-medium text-sm truncate w-40 md:w-48">${item.name}</h3>
                     <p class="text-sm">KES ${item.price}</p>
                 </div>
             </div>
-            <div class="flex items-center">
+            <div class="flex items-center gap-2">
                 <button class="quantity-btn decrease bg-[#5C4033] bg-opacity-20 text-[#5C4033] w-8 h-8 rounded-full flex items-center justify-center" data-id="${item.id}">-</button>
-                <span class="mx-4 text-[#5C4033]">${item.quantity}</span>
+                <span class="text-[#5C4033]">${item.quantity}</span>
                 <button class="quantity-btn increase bg-[#5C4033] bg-opacity-20 text-[#5C4033] w-8 h-8 rounded-full flex items-center justify-center" data-id="${item.id}">+</button>
-                <button class="remove-btn ml-4 text-[#5C4033] hover:text-opacity-70" data-id="${item.id}">×</button>
+                <button class="remove-btn text-[#5C4033] hover:text-opacity-70 ml-2" data-id="${item.id}">×</button>
             </div>
         </div>
     `).join('');

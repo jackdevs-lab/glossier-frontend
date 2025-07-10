@@ -78,6 +78,24 @@ body {
     margin-bottom: 1rem;
     flex-grow: 0;
 }
+.cart-item-img {
+    width: 64px; /* Tailwind: w-16 */
+    height: 64px; /* Tailwind: h-16 */
+    object-fit: contain;
+    flex-shrink: 0;
+}
+.cart-item {
+    display: flex;
+    flex-wrap: wrap; /* allow wrapping on smaller screens */
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+@media (max-width: 768px) {
+    .cart-item h3 {
+        max-width: 12rem; /* prevent title from breaking layout */
+    }
+}
 
 /* Responsive adjustments for product cards */
 @media (max-width: 767px) {
