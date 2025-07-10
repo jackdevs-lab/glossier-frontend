@@ -87,9 +87,9 @@ renderCart() {
                 </div>
             </div>
             <div class="flex items-center gap-3">
-                <button class="quantity-btn decrease bg-[#5C4033] bg-opacity-20 text-[#5C4033] w-6 h-6 rounded-full flex items-center justify-center" data-id="${item.id}">-</button>
+                <button class="quantity-btn decrease bg-[#5C4033] bg-opacity-20 text-white w-6 h-6 rounded-full flex items-center justify-center" data-id="${item.id}">-</button>
                 <span class="text-[#5C4033]">${item.quantity}</span>
-                <button class="quantity-btn increase bg-[#5C4033] bg-opacity-20 text-[#5C4033] w-6 h-6 rounded-full flex items-center justify-center" data-id="${item.id}">+</button>
+                <button class="quantity-btn increase bg-[#5C4033] bg-opacity-20 text-white w-6 h-6 rounded-full flex items-center justify-center" data-id="${item.id}">+</button>
                 <button class="remove-btn text-[#5C4033] hover:text-opacity-70 ml-3 text-xl" data-id="${item.id}">×</button>
             </div>
         </div>

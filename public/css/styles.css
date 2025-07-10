@@ -99,9 +99,23 @@ body {
     gap: 1rem; /* Increase gap between quantity buttons and remove button */
 }
 .quantity-btn {
-    min-width: 24px; /* Ensure consistent button size */
+    min-width: 24px;
     min-height: 24px;
-    font-size: 1rem; /* Adjust icon size inside buttons */
+    font-size: 1.25rem; /* Increase font size for better visibility */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white !important; /* Force white text */
+    background-color: #5C4033; /* Ensure solid background for contrast */
+    transition: background-color 0.3s ease;
+}
+.quantity-btn:hover {
+    background-color: #4A3226; /* Darker shade on hover for feedback */
+    color: white; /* Maintain white text on hover */
+}
+.quantity-btn.decrease,
+.quantity-btn.increase {
+    background-opacity: 0.8; /* Adjust opacity if needed */
 }
 .remove-btn {
     margin-left: 1rem; /* Increase spacing from quantity buttons */
