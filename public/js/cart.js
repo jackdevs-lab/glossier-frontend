@@ -80,7 +80,7 @@ class Cart {
     cartItemsElement.innerHTML = this.items.map(item => `
         <div class="flex justify-between items-center mb-4 pb-4 border-b border-[#5C4033] border-opacity-20">
             <div class="flex items-center">
-                <img src="${item.image}" alt="${item.name}" class="w-32 h-32 object-contain mr-4">
+                <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-contain mr-4">
                 <div>
                     <h3 class="text-[#5C4033] font-medium">${item.name}</h3>
                     <p class="text-[#5C4033]">KES ${item.price}</p>
