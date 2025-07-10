@@ -78,12 +78,15 @@ body {
     margin-bottom: 1rem;
     flex-grow: 0;
 }
-.cart-item-img {
-    width: 64px; /* Tailwind: w-16 */
-    height: 64px; /* Tailwind: h-16 */
+.cart-item img {
+    max-width: 64px;
+    max-height: 64px;
+    width: auto;
+    height: auto;
     object-fit: contain;
-    flex-shrink: 0;
+    display: block;
 }
+
 .cart-item {
     display: flex;
     flex-wrap: wrap; /* allow wrapping on smaller screens */

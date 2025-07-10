@@ -78,11 +78,11 @@ renderCart() {
     }
 
     cartItemsElement.innerHTML = this.items.map(item => `
-        <div class="cart-item border-b border-[#5C4033] border-opacity-20 pb-4 mb-4 flex flex-wrap md:flex-nowrap justify-between items-start gap-4">
-            <div class="flex items-center gap-4 flex-1 min-w-0">
-                <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain rounded flex-shrink-0">
-                <div class="text-[#5C4033] min-w-0">
-                    <h3 class="font-medium text-sm truncate w-40 md:w-48">${item.name}</h3>
+        <div class="cart-item flex items-start justify-between gap-4 mb-4 pb-4 border-b border-[#5C4033] border-opacity-20">
+            <div class="flex gap-4 items-start flex-1">
+                <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain rounded flex-shrink-0" style="max-width:64px; max-height:64px;">
+                <div class="text-[#5C4033] max-w-[150px]">
+                    <h3 class="font-medium text-sm leading-snug truncate">${item.name}</h3>
                     <p class="text-sm">KES ${item.price}</p>
                 </div>
             </div>
@@ -90,13 +90,14 @@ renderCart() {
                 <button class="quantity-btn decrease bg-[#5C4033] bg-opacity-20 text-[#5C4033] w-8 h-8 rounded-full flex items-center justify-center" data-id="${item.id}">-</button>
                 <span class="text-[#5C4033]">${item.quantity}</span>
                 <button class="quantity-btn increase bg-[#5C4033] bg-opacity-20 text-[#5C4033] w-8 h-8 rounded-full flex items-center justify-center" data-id="${item.id}">+</button>
-                <button class="remove-btn text-[#5C4033] hover:text-opacity-70 ml-2" data-id="${item.id}">×</button>
+                <button class="remove-btn text-[#5C4033] hover:text-opacity-70 ml-2 text-xl" data-id="${item.id}">×</button>
             </div>
         </div>
     `).join('');
 
     cartTotalElement.textContent = `KES ${this.getTotal()}`;
 }
+
 
 checkout() {
     if (this.items.length === 0) {
