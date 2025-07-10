@@ -1,4 +1,4 @@
-const API_BASE_URL ="https://railway.com/project/62059eac-5ebc-4d58-a8bc-5e34c32e2c1d";
+const API_BASE_URL ="https://glossier-backend-production.up.railway.app";
 
 async function getProductsByCategory(category) {
     try {
