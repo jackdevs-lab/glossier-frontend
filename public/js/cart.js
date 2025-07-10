@@ -66,62 +66,61 @@ class Cart {
     }
     
     renderCart() {
-        const cartItemsElement = document.getElementById('cart-items');
-        const cartTotalElement = document.getElementById('cart-total');
-        
-        if (!cartItemsElement || !cartTotalElement) return;
-        
-        if (this.items.length === 0) {
-            cartItemsElement.innerHTML = '<p class="text-[#5C4033]">Your cart is empty</p>';
-            cartTotalElement.textContent = 'KES 0';
-            return;
-        }
-        
-        cartItemsElement.innerHTML = this.items.map(item => `
-            <div class="flex justify-between items-center mb-4 pb-4 border-b border-[#5C4033] border-opacity-20">
-                <div class="flex items-center">
-                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain mr-4">
-                    <div>
-                        <h3 class="text-[#5C4033] font-medium">${item.name}</h3>
-                        <p class="text-[#5C4033]">KES ${item.price}</p>
-                    </div>
-                </div>
-                <div class="flex items-center">
-                    <button class="quantity-btn decrease bg-[#5C4033] bg-opacity-10 text-[#5C4033] w-6 h-6 rounded-full flex items-center justify-center" data-id="${item.id}">-</button>
-                    <span class="mx-2 text-[#5C4033]">${item.quantity}</span>
-                    <button class="quantity-btn increase bg-[#5C4033] bg-opacity-10 text-[#5C4033] w-6 h-6 rounded-full flex items-center justify-center" data-id="${item.id}">+</button>
-                    <button class="remove-btn ml-4 text-[#5C4033] hover:text-opacity-70" data-id="${item.id}">
-                        <i class="fas fa-times"></i>
-                    </button>
+    const cartItemsElement = document.getElementById('cart-items');
+    const cartTotalElement = document.getElementById('cart-total');
+
+    if (!cartItemsElement || !cartTotalElement) return;
+
+    if (this.items.length === 0) {
+        cartItemsElement.innerHTML = '<p class="text-[#5C4033] text-center">Your cart is empty</p>';
+        cartTotalElement.textContent = 'KES 0';
+        return;
+    }
+
+    cartItemsElement.innerHTML = this.items.map(item => `
+        <div class="flex justify-between items-center mb-4 pb-4 border-b border-[#5C4033] border-opacity-20">
+            <div class="flex items-center">
+                <img src="${item.image}" alt="${item.name}" class="w-32 h-32 object-contain mr-4">
+                <div>
+                    <h3 class="text-[#5C4033] font-medium">${item.name}</h3>
+                    <p class="text-[#5C4033]">KES ${item.price}</p>
                 </div>
             </div>
-        `).join('');
-        
-        cartTotalElement.textContent = `KES ${this.getTotal()}`;
-    }
-    
-    checkout() {
-        if (this.items.length === 0) return;
+            <div class="flex items-center">
+                <button class="quantity-btn decrease bg-[#5C4033] bg-opacity-20 text-[#5C4033] w-8 h-8 rounded-full flex items-center justify-center" data-id="${item.id}">-</button>
+                <span class="mx-4 text-[#5C4033]">${item.quantity}</span>
+                <button class="quantity-btn increase bg-[#5C4033] bg-opacity-20 text-[#5C4033] w-8 h-8 rounded-full flex items-center justify-center" data-id="${item.id}">+</button>
+                <button class="remove-btn ml-4 text-[#5C4033] hover:text-opacity-70" data-id="${item.id}">×</button>
+            </div>
+        </div>
+    `).join('');
 
-        // Construct the WhatsApp message
-        const phoneNumber = '+254797661210'; // Replace with your WhatsApp number
-        const message = `Hello! I would like to place an order from Luné Seduire. Here are my cart details:\n\n` +
-                       this.items.map(item => `${item.name} - Quantity: ${item.quantity} - Price: KES ${item.price * item.quantity}`).join('\n') +
-                       `\n\nTotal: KES ${this.getTotal()}\nPlease confirm my order.`;
-        
-        // Encode the message and create WhatsApp URL
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-        
-        try {
-            // Open WhatsApp in a new tab
-            window.open(whatsappURL, '_blank');
-        } catch (error) {
-            console.error('Failed to open WhatsApp:', error);
-            // Optionally, show a user-friendly message if WhatsApp fails
-            alert('Unable to open WhatsApp. Please try again or contact support.');
-        }
+    cartTotalElement.textContent = `KES ${this.getTotal()}`;
+}
+
+checkout() {
+    if (this.items.length === 0) {
+        alert('Your cart is empty. Please add items before checking out.');
+        return;
     }
+
+    const phoneNumber = '+254797661210';
+    const message = `Hello! I would like to place an order from Luné Seduire. Here are my cart details:\n\n` +
+                   this.items.map(item => `${item.name} - Quantity: ${item.quantity} - Price: KES ${item.price * item.quantity}`).join('\n') +
+                   `\n\nTotal: KES ${this.getTotal()}\nPlease confirm my order.`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    try {
+        window.open(whatsappURL, '_blank');
+    } catch (error) {
+        console.error('Failed to open WhatsApp:', error);
+        alert('Unable to open WhatsApp. Please try again or contact support.');
+    }
+}
+    
+    
 }
 
 // Initialize cart
