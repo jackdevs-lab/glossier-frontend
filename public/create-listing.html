@@ -25,7 +25,7 @@
                 <a href="/products.html" class="text-[#5C4033] hover:underline">Products</a>
             </nav>
             <div class="flex items-center space-x-4">
-                <div class="text-[#5C4033] cursor-pointer">NG</div>
+                <div class="text-[#5C4033] cursor-pointer">KE</div>
                 <i class="fas fa-search text-[#5C4033] cursor-pointer"></i>
                 <div class="relative cursor-pointer" id="cart-icon">
                     <i class="fas fa-crown text-[#5C4033]"></i>
@@ -151,7 +151,7 @@
             // Populate category dropdown with unique categories from API
             async function populateCategories() {
                 try {
-                    const response = await fetch('http://localhost:3000/api/products');
+                    const response = await fetch('https://glossier-backend-production.up.railway.app/api/products');
                     const data = await response.json();
                     if (Array.isArray(data)) {
                         const categories = [...new Set(data.map(product => product.category))].filter(c => c);
@@ -179,7 +179,7 @@
             // Populate product table
             async function populateProductTable() {
                 try {
-                    const response = await fetch('http://localhost:3000/api/products');
+                    const response = await fetch('https://glossier-backend-production.up.railway.app/api/products');
                     const products = await response.json();
                     productTableBody.innerHTML = products.map(product => `
                         <tr class="border-b border-[#5C4033] border-opacity-20">
@@ -206,7 +206,7 @@
                         button.addEventListener('click', async function() {
                             const id = this.dataset.id;
                             if (confirm('Are you sure you want to delete this product?')) {
-                                await fetch(`http://localhost:3000/api/products/${id}`, { method: 'DELETE' });
+                                await fetch(`https://glossier-backend-production.up.railway.app/api/products/${id}`, { method: 'DELETE' });
                                 populateProductTable(); // Refresh table
                             }
                         });
@@ -225,7 +225,7 @@
             const editId = urlParams.get('edit');
             if (editId) {
                 try {
-                    const response = await fetch('http://localhost:3000/api/products');
+                    const response = await fetch('https://glossier-backend-production.up.railway.app/api/products');
                     const products = await response.json();
                     const productToEdit = Array.isArray(products) ? products.find(p => p.id === parseInt(editId)) : null;
                     if (productToEdit) {
@@ -263,7 +263,7 @@
 
                 try {
                     const method = editId ? 'PUT' : 'POST';
-                    const url = editId ? `http://localhost:3000/api/products/${editId}` : 'http://localhost:3000/api/products';
+                    const url = editId ? `https://glossier-backend-production.up.railway.app/api/products/${editId}` : 'https://glossier-backend-production.up.railway.app/api/products';
                     const response = await fetch(url, {
                         method: method,
                         headers: { 'Content-Type': 'application/json' },
