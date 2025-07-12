@@ -112,3 +112,22 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Nav modal (#nav-modal) not found');
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+    // Select all FAQ questions
+    const faqQuestions = document.querySelectorAll('.faq-question');
+
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            // Toggle the 'active' class on the question
+            question.classList.toggle('active');
+
+            // Find the corresponding answer
+            const answer = question.nextElementSibling;
+
+            // Toggle the 'active' class on the answer
+            if (answer.classList.contains('faq-answer')) {
+                answer.classList.toggle('active');
+            }
+        });
+    });
+});
