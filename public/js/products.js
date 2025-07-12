@@ -1,4 +1,4 @@
-const API_BASE_URL ="https://glossier-backend-production.up.railway.app";
+const API_BASE_URL = "https://glossier-backend-production.up.railway.app";
 
 async function getProductsByCategory(category) {
     try {
@@ -34,23 +34,39 @@ async function getAllProducts() {
     }
 }
 
-async function renderProductGrid(category, containerId, products = null) {
-    const finalProducts = products || await getProductsByCategory(category);
+function sortProducts(products, sortOption) {
+    const sortedProducts = [...products]; // Create a copy to avoid mutating the original array
+    switch (sortOption) {
+        case 'price-asc':
+            return sortedProducts.sort((a, b) => a.price - b.price);
+        case 'price-desc':
+            return sortedProducts.sort((a, b) => b.price - a.price);
+        case 'name-asc':
+            return sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+        case 'default':
+        default:
+            return sortedProducts; // Return unsorted (original order)
+    }
+}
+
+async function renderProductGrid(category, containerId, products = null, sortOption = 'default') {
+    const finalProducts = products || (await getProductsByCategory(category));
+    const sortedProducts = sortProducts(finalProducts, sortOption);
     const container = document.getElementById(containerId);
     const productCount = document.getElementById('product-count');
-    
+
     if (!container) {
         console.error(`Container ${containerId} not found`);
         return;
     }
-    
+
     if (productCount) {
-        productCount.textContent = `${finalProducts.length} products`;
+        productCount.textContent = `${sortedProducts.length} products`;
     }
-    
-    container.innerHTML = finalProducts.length === 0
+
+    container.innerHTML = sortedProducts.length === 0
         ? '<p class="text-[#5C4033] text-center">No products found in this category.</p>'
-        : finalProducts.map(product => `
+        : sortedProducts.map(product => `
             <div class="product-card bg-white rounded-lg p-4 shadow-sm transition transform hover:scale-[1.02]">
                 <img src="${product.image}" alt="${product.name}" class="w-full max-h-48 object-contain mb-4">
                 <h3 class="text-[#5C4033] font-bold mb-2">${product.name}</h3>
@@ -93,7 +109,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (validCategories.includes(category)) {
         console.log(`Rendering category page for: ${category}`);
-        renderProductGrid(category, 'product-grid');
+        // Fetch products and store them for sorting
+        let currentProducts = [];
+        getProductsByCategory(category).then(products => {
+            currentProducts = products;
+            renderProductGrid(category, 'product-grid', currentProducts, 'default');
+        });
+
+        // Add event listener for sort dropdown
+        const sortSelect = document.getElementById('sort');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', (e) => {
+                const sortOption = e.target.value;
+                console.log(`Sorting products by: ${sortOption}`);
+                renderProductGrid(category, 'product-grid', currentProducts, sortOption);
+            });
+        } else {
+            console.error('Sort dropdown (#sort) not found');
+        }
     } else if (category === 'products') {
         console.log('Rendering all products');
         renderProductList('product-list');
